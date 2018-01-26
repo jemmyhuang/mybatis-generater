@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+
 /**
 * GoodsService实现
 * Created by jiehuang on 2018/1/26.
@@ -23,5 +25,10 @@ public class GoodsServiceImpl extends BaseServiceImpl<GoodsMapper, Goods, GoodsE
 
     @Autowired
     GoodsMapper goodsMapper;
+
+    @PostConstruct
+    public void init() {
+         this.initMapper();
+    }
 
 }

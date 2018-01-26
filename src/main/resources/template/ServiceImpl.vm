@@ -24,4 +24,9 @@ public class ${model}ServiceImpl extends BaseServiceImpl<${model}Mapper, ${model
     @Autowired
     ${model}Mapper ${mapper}Mapper;
 
+    @PostConstruct
+    public void init() {
+         this.initMapper();
+    }
+
 }

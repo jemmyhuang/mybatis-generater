@@ -3,6 +3,7 @@ package base;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.annotations.Param;
+import utils.SpringContextUtil;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -15,7 +16,8 @@ import java.util.List;
  */
 public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseService<Record, Example> {
 
-    public Mapper mapper;
+    public Mapper mapper ;
+
 
     @Override
     public int countByExample(Example example) {
@@ -408,6 +410,10 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         return 0;
     }
 
+    @Override
+    public void initMapper() {
+        this.mapper = SpringContextUtil.getBean(getMapperClass());
+    }
 
     /**
      * 获取类泛型class
